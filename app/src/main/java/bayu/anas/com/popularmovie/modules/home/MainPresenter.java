@@ -1,5 +1,7 @@
 package bayu.anas.com.popularmovie.modules.home;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +41,14 @@ public class MainPresenter {
             @Override
             public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
                 List<Movie> movies = new ArrayList<>();
-                movies.addAll( response.body().getResults());
-                adapter.setData(movies);
+
+                try {
+                    movies.addAll(response.body().getResults());
+                    adapter.setData(movies);
+                }catch (Exception e){
+                    Log.d("LOG_ERR", e.toString());
+                    mView.onErr("Ops! There is something wrong");
+                }
                 mView.onFinished();
             }
 

@@ -7,4 +7,5 @@ package bayu.anas.com.popularmovie.modules.home;
 public interface MainView {
     void onProgress();
     void onFinished();
+    void onErr(String msg);
 }
