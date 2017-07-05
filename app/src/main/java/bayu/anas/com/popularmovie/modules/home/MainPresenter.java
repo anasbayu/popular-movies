@@ -30,33 +30,11 @@ public class MainPresenter {
                 .build();
     }
 
-    public void getPopularMovies(String apiKey, final MovieAdapter adapter){
+    public void getMovie(String apiKey, final MovieAdapter adapter, String order){
         mView.onProgress();
 
         APIInterface iApi = retrofit.create(APIInterface.class);
-        Call<ResultResponse> data = iApi.getPopularMovies(apiKey);
-        data.enqueue(new Callback<ResultResponse>() {
-            @Override
-            public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
-                List<Movie> movies = new ArrayList<>();
-                movies.addAll( response.body().getResults());
-                adapter.setData(movies);
-                mView.onFinished();
-            }
-
-            @Override
-            public void onFailure(Call<ResultResponse> call, Throwable t) {
-                t.printStackTrace();
-                mView.onFinished();
-            }
-        });
-    }
-
-    public void getTopRatedMovies(String apiKey, final MovieAdapter adapter){
-        mView.onProgress();
-
-        APIInterface iApi = retrofit.create(APIInterface.class);
-        Call<ResultResponse> data = iApi.getTopRatedMovies(apiKey);
+        Call<ResultResponse> data = iApi.getMovie(order, apiKey);
         data.enqueue(new Callback<ResultResponse>() {
             @Override
             public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {

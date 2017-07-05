@@ -1,9 +1,11 @@
 package bayu.anas.com.popularmovie.modules.detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,9 +25,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Movie data = getIntent().getExtras().getParcelable("data");
-        initView();
-        setData(data);
+        Intent i = getIntent();
+        if(i != null && i.hasExtra("data")){
+            Movie data = i.getExtras().getParcelable("data");
+            initView();
+            setData(data);
+        }
     }
 
 
@@ -38,12 +43,16 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setData(Movie data){
-        String imgBasePath = getResources().getString(R.string.img_base_path);
+        if(data != null){
+            String imgBasePath = getResources().getString(R.string.img_base_path);
 
-        txtTitle.setText(data.getTitle());
-        txtRating.setText("Rating: " + data.getVoiteAverage());
-        txtSynopsys.setText(data.getOverview());
-        txtReleaseDate.setText("Release Date: " + data.getReleaseDate());
-        Picasso.with(this).load(imgBasePath + data.getPosterPath()).into(imgPoster);
+            txtTitle.setText(data.getTitle());
+            txtRating.setText("Rating: " + data.getVoiteAverage());
+            txtSynopsys.setText(data.getOverview());
+            txtReleaseDate.setText("Release Date: " + data.getReleaseDate());
+            Picasso.with(this).load(imgBasePath + data.getPosterPath()).into(imgPoster);
+        }else{
+            Toast.makeText(this, "Cannot load data", Toast.LENGTH_SHORT).show();
+        }
     }
 }

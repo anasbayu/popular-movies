@@ -58,10 +58,12 @@ public class MainActivity extends AppCompatActivity implements MainView{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(!isFirst){
-                    if(spinner.getSelectedItemPosition() == 1){
-                        mPresenter.getPopularMovies(getResources().getString(R.string.api_key), moviewAdapter);
+                    if(spinner.getSelectedItemPosition() == 0){
+                        mPresenter.getMovie(getResources().getString(R.string.api_key), moviewAdapter,
+                                getResources().getString(R.string.api_most_popular));
                     }else{
-                        mPresenter.getTopRatedMovies(getResources().getString(R.string.api_key), moviewAdapter);
+                        mPresenter.getMovie(getResources().getString(R.string.api_key), moviewAdapter,
+                                getResources().getString(R.string.api_top_rated));
                     }
                 }else{
                     isFirst = false;
@@ -88,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
         spinner.setAdapter(adapter);
 
         // Populate feed (RV).
-        mPresenter.getTopRatedMovies(getResources().getString(R.string.api_key), moviewAdapter);
+        mPresenter.getMovie(getResources().getString(R.string.api_key), moviewAdapter,
+                getResources().getString(R.string.api_most_popular));
     }
 
 

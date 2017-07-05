@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_feed_spacing">15dp</dimen>
+    <dimen name="detail_padding">20dp</dimen>
+    <dimen name="detail_synopsis_padding_top">10dp</dimen>
+    <dimen name="detail_poster_width">350dp</dimen>
+    <dimen name="detail_poster_height">230dp</dimen>
+    <dimen name="detail_poster_right_spacing">5dp</dimen>
+    <dimen name="detail_title_bottom_spacing">10dp</dimen>
+</resources>

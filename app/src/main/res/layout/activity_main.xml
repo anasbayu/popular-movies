@@ -13,15 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="@dimen/main_feed_spacing"
         android:layout_weight="1"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
         android:layout_below="@+id/spinner"
         android:layout_alignParentStart="true">
 
